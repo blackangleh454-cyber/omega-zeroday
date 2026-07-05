@@ -1,13 +1,13 @@
 Source: omega-zeroday
 Section: utils
 Priority: optional
-Maintainer: Mirzacyberhub <mirzacyberhub@proton.me>
+Maintainer: Mirzacyberhub <blackangleh454-cyber@proton.me>
 Build-Depends: debhelper (>= 10), 
                gcc,
                libssl-dev,
                dh-make
 Standards-Version: 4.5.0
-Homepage: https://github.com/mirzacyberhub/omega-zeroday
+Homepage: https://github.com/blackangleh454-cyber/omega-zeroday
 
 Package: omega-zeroday
 Architecture: any

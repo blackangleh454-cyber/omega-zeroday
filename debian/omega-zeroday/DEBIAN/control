@@ -1,13 +1,13 @@
 Package: omega-zeroday
 Version: 2.0.0-1
 Architecture: amd64
-Maintainer: Mirzacyberhub <mirzacyberhub@proton.me>
+Maintainer: Mirzacyberhub <blackangleh454-cyber@proton.me>
 Installed-Size: 258
 Depends: libc6 (>= 2.38), libssl3t64 (>= 3.0.0), python3, python3-rich, python3-requests
 Recommends: gdb
 Section: utils
 Priority: optional
-Homepage: https://github.com/mirzacyberhub/omega-zeroday
+Homepage: https://github.com/blackangleh454-cyber/omega-zeroday
 Description: Zero-day vulnerability discovery engine with 8 detection modules
  OMEGA-ZERODAY is an advanced zero-day vulnerability discovery tool
  designed for penetration testers and security researchers.

@@ -38,7 +38,7 @@ OMEGA-ZERODAY is an advanced zero-day vulnerability discovery tool designed for 
 ### From Source
 
 ```bash
-git clone https://github.com/mirzacyberhub/omega-zeroday
+git clone https://github.com/blackangleh454-cyber/omega-zeroday
 cd omega-zeroday
 sudo dpkg -i omega-zeroday_2.0.0_amd64.deb
 ```
@@ -174,8 +174,8 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 ## 📞 Contact
 
 - **Author**: Mirzacyberhub
-- **Email**: mirzacyberhub@proton.me
-- **GitHub**: https://github.com/mirzacyberhub
+- **Email**: blackangleh454-cyber@proton.me
+- **GitHub**: https://github.com/blackangleh454-cyber
 
 ---
 
