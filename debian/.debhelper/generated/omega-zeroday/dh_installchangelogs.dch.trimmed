@@ -1,0 +1,20 @@
+omega-zeroday (2.0.0-1) unstable; urgency=medium
+
+  * Initial release of OMEGA-ZERODAY v2.0.0
+  * C engine for high-performance scanning
+  * Python Rich TUI for beautiful terminal output
+  * 8 detection engines: ReconSpider, AuthBreaker, RaceHunter,
+    SSRFOracle, MassAssign, SmuggleHunter, LogicBreaker, CryptoOracle
+  * Exploit chain analysis
+  * JSON output support
+  * Real vulnerability detection (not tool wrappers)
+  * Race condition fix for parallel request handling
+
+ -- Mirzacyberhub <mirzacyberhub@proton.me>  Sat, 05 Jul 2026 12:00:00 +0500
+
+omega-zeroday (1.0.0-1) unstable; urgency=low
+
+  * Initial Python-only version
+  * 8 detection engines in Python
+
+ -- Mirzacyberhub <mirzacyberhub@proton.me>  Fri, 04 Jul 2026 18:00:00 +0500

@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE=1
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	cd engine && make all
+
+override_dh_auto_install:
+	# Create directories
+	install -D -d $(CURDIR)/usr/bin
+	install -D -d $(CURDIR)/usr/share/omega-zeroday
+	install -D -d $(CURDIR)/usr/share/doc/omega-zeroday
+	
+	# Install C engine (main binary)
+	install -D -m 755 engine/build/omega-engine $(CURDIR)/usr/bin/omega-engine
+	
+	# Install CLI wrapper
+	install -D -m 755 omega-zeroday.sh $(CURDIR)/usr/bin/omega-zeroday
+	
+	# Install Python TUI
+	install -D -m 644 ui/omega_tui.py $(CURDIR)/usr/share/omega-zeroday/omega_tui.py
+	
+	# Install Python v1.0 engine
+	install -D -m 644 omega_zeroday.py $(CURDIR)/usr/share/omega-zeroday/omega_zeroday.py
+	
+	# Install documentation
+	install -D -m 644 README.md $(CURDIR)/usr/share/doc/omega-zeroday/README.md
+	install -D -m 644 LICENSE $(CURDIR)/usr/share/doc/omega-zeroday/LICENSE
+
+override_dh_auto_test:
+	# Test that binary works
+	./engine/build/omega-engine --version
+
+override_dh_strip:
+	# Don't strip debug symbols yet
+	dh_strip --no-automatic-dbgsym
+
+override_dh_shlibdeps:
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info

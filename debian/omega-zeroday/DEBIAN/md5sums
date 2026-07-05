@@ -1,0 +1,8 @@
+c6fc97f0203470f3b280499c283e0e2b  usr/bin/omega-engine
+b5855aaa2b0812f539614c57c4476be0  usr/bin/omega-zeroday.sh
+29c643aef8a0767235bc4e47c3a8835d  usr/share/doc/omega-zeroday/LICENSE
+63b0c1edb36804bd4696686e7d3a9660  usr/share/doc/omega-zeroday/README.md.gz
+02df9b6245426cfe528b731e36be0889  usr/share/doc/omega-zeroday/changelog.Debian.gz
+b8f1744886906ce861b3fd9b358a9049  usr/share/doc/omega-zeroday/copyright
+8e85fa49de76f03029e3e6a8ac01df0f  usr/share/omega-zeroday/omega_tui.py
+2ede06868de2f603bd1e37172b82d0f4  usr/share/omega-zeroday/omega_zeroday.py

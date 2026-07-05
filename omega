@@ -1,0 +1,94 @@
+#!/bin/bash
+# OMEGA-ZERODAY HUNTER v2.0 — Launcher Script
+# Builds C engine if needed, launches Python TUI
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ENGINE_DIR="$SCRIPT_DIR/engine"
+BUILD_DIR="$ENGINE_DIR/build"
+ENGINE_BIN="$BUILD_DIR/omega-engine"
+UI_SCRIPT="$SCRIPT_DIR/ui/omega_tui.py"
+
+# Colors
+RED='\033[1;31m'
+CYAN='\033[1;36m'
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo ""
+echo -e "${RED}  ██████╗ ██╗  ██╗██╗██╗       ██████╗  █████╗ ███╗   ██╗██████╗ ██╗     ██╗   ██╗███████╗${NC}"
+echo -e "${RED}  ██╔═══██╗██║  ██║██║██║      ██╔═══██╗██╔══██╗████╗  ██║██╔══██╗██║     ██║   ██║██╔════╝${NC}"
+echo -e "${RED}  ██║   ██║███████║██║██║      ██║   ██║███████║██╔██╗ ██║██║  ██║██║     ██║   ██║███████╗${NC}"
+echo -e "${RED}  ██║▄▄ ██║██╔══██║██║██║      ██║   ██║██╔══██║██║╚██╗██║██║  ██║██║     ██║   ██║╚════██║${NC}"
+echo -e "${RED}  ╚██████╔╝██║  ██║██║███████╗╚██████╔╝██║  ██║██║ ╚████║██████╔╝███████╗╚██████╔╝███████║${NC}"
+echo -e "${RED}   ╚══▀▀═╝ ╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝${NC}"
+echo -e "${CYAN}  🔒 Zero-Day Hunter v2.0 — C Engine + Python UI${NC}"
+echo -e "${YELLOW}  ⚡ Blazing fast | 🎯 8 engines | 💀 Production grade${NC}"
+echo ""
+
+# Check dependencies
+check_deps() {
+    local missing=0
+    
+    if ! command -v gcc &>/dev/null; then
+        echo -e "${RED}  ❌ gcc not found. Install: apt install build-essential${NC}"
+        missing=1
+    fi
+    
+    if ! python3 -c "import rich" &>/dev/null 2>&1; then
+        echo -e "${YELLOW}  ⚙️  Installing rich library...${NC}"
+        pip install rich --break-system-packages -q 2>/dev/null || pip3 install rich -q 2>/dev/null
+    fi
+    
+    # Check OpenSSL dev headers
+    if ! pkg-config --exists openssl 2>/dev/null; then
+        echo -e "${YELLOW}  ⚙️  Installing libssl-dev...${NC}"
+        apt-get install -y libssl-dev pkg-config 2>/dev/null || true
+    fi
+    
+    return $missing
+}
+
+# Build C engine
+build_engine() {
+    echo -e "${CYAN}  ⚙️  Building C engine...${NC}"
+    mkdir -p "$BUILD_DIR"
+    
+    if make -C "$ENGINE_DIR" -j$(nproc) 2>&1; then
+        echo -e "${GREEN}  ✅ C engine built successfully!${NC}"
+        echo -e "${GREEN}     Binary: $ENGINE_BIN${NC}"
+        echo -e "${GREEN}     Size: $(ls -lh "$ENGINE_BIN" | awk '{print $5}')${NC}"
+        return 0
+    else
+        echo -e "${RED}  ❌ Build failed!${NC}"
+        return 1
+    fi
+}
+
+# Main
+echo -e "${CYAN}  Checking dependencies...${NC}"
+if check_deps; then
+    echo -e "${GREEN}  ✅ All dependencies OK${NC}"
+else
+    exit 1
+fi
+
+# Build if needed
+if [ ! -f "$ENGINE_BIN" ] || [ "$1" = "--rebuild" ]; then
+    build_engine || exit 1
+else
+    echo -e "${GREEN}  ✅ C engine already built${NC}"
+fi
+
+# Check if target is passed as argument
+if [ $# -gt 0 ] && [ "$1" != "--rebuild" ]; then
+    # Pass all args to Python UI
+    echo ""
+    python3 "$UI_SCRIPT" "$@"
+else
+    # Interactive mode
+    echo ""
+    python3 "$UI_SCRIPT"
+fi

@@ -1,0 +1,6 @@
+engine/build/omega-engine usr/bin
+omega-zeroday.sh usr/bin
+ui/omega_tui.py usr/share/omega-zeroday
+omega_zeroday.py usr/share/omega-zeroday
+README.md usr/share/doc/omega-zeroday
+LICENSE usr/share/doc/omega-zeroday

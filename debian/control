@@ -1,0 +1,37 @@
+Source: omega-zeroday
+Section: utils
+Priority: optional
+Maintainer: Mirzacyberhub <mirzacyberhub@proton.me>
+Build-Depends: debhelper (>= 10), 
+               gcc,
+               libssl-dev,
+               dh-make
+Standards-Version: 4.5.0
+Homepage: https://github.com/mirzacyberhub/omega-zeroday
+
+Package: omega-zeroday
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, 
+         python3,
+         python3-rich,
+         python3-requests
+Recommends: gdb
+Description: Zero-day vulnerability discovery engine with 8 detection modules
+ OMEGA-ZERODAY is an advanced zero-day vulnerability discovery tool 
+ designed for penetration testers and security researchers.
+ .
+ Features 8 specialized detection engines:
+  * ReconSpider - Endpoint discovery, sensitive files, API paths
+  * AuthBreaker - Authentication bypass, JWT analysis, header manipulation
+  * RaceHunter - Race condition (TOCTOU) detection via parallel bursts
+  * SSRFOracle - Server-Side Request Forgery detection
+  * MassAssign - Mass assignment and content-type switching
+  * SmuggleHunter - HTTP request smuggling (CL.TE, TE.CL, TE.TE)
+  * LogicBreaker - Business logic flaw detection
+  * CryptoOracle - Cryptographic weakness and timing side-channel analysis
+ .
+ Built with a high-performance C engine for speed and a Python Rich 
+ TUI for beautiful terminal output. Supports JSON output for automation.
+ .
+ Includes exploit chain analysis that links related vulnerabilities 
+ into attack chains for maximum impact assessment.

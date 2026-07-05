@@ -1,0 +1,6 @@
+./engine/build/omega-engine
+./omega-zeroday.sh
+./ui/omega_tui.py
+./omega_zeroday.py
+./README.md
+./LICENSE
